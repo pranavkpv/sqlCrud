@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const db = require('./config/db');
+const db = require('./config/db')
+require('./schema/createUserTable')
 
 // middleware to parse JSON
 app.use(express.json());
