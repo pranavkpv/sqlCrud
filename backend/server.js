@@ -2,15 +2,12 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const db = require('./config/db')
+const userRouter = require('./router/userRouter')
 require('./schema/createUserTable')
 
 // middleware to parse JSON
 app.use(express.json());
-
-// test route
-app.get('/', (req, res) => {
-  res.send('Server is running 🚀');
-});
+app.use("/api/users", userRouter);
 
 // start server
 app.listen(PORT, () => {
