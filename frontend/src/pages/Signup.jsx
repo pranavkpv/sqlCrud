@@ -17,7 +17,7 @@ function Signup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -26,9 +26,41 @@ function Signup() {
     }
 
     setError("");
-    console.log("Signup Data:", formData);
-    alert("Signup successful!");
+
+    try {
+      const response = await fetch("http://localhost:3000/api/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.username,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "Signup failed");
+        return;
+      }
+
+      alert(data.message || "Signup successful!");
+
+      // optional: clear form
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (err) {
+      setError("Server not reachable");
+    }
   };
+
 
   return (
     <div style={styles.container}>

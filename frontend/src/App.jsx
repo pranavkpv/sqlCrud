@@ -13,14 +13,14 @@ function App() {
   }
 
   return (
-    <div style={styles.container}>
+    <div>
       <h2>Welcome 👋</h2>
 
-      <div style={styles.buttonBox}>
-        <button onClick={() => setPage("login")} style={styles.button}>
+      <div>
+        <button onClick={() => setPage("login")} >
           Login
         </button>
-        <button onClick={() => setPage("signup")} style={styles.button}>
+        <button onClick={() => setPage("signup")}>
           Signup
         </button>
       </div>
