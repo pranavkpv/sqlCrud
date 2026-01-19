@@ -7,6 +7,7 @@ const createUsersTable = async () => {
       name VARCHAR(100),
       email VARCHAR(150) UNIQUE,
       password VARCHAR(255),
+      role VARCHAR(150),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `;

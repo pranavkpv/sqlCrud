@@ -9,6 +9,7 @@ const db = require('../config/db')
 router.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    const role = "user"
 
     // validation
     if (!name || !email || !password) {
@@ -30,8 +31,8 @@ router.post("/signup", async (req, res) => {
 
     // insert user
     await db.execute(
-      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-      [name, email, hashedPassword]
+      "INSERT INTO users (name, email, password,role) VALUES (?, ?, ?,?)",
+      [name, email, hashedPassword, role]
     );
 
     res.status(201).json({
